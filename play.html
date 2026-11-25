@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play Imp Doom</title>
+<meta name="description" content="Play Imp Doom in your browser on an emulated Timex Sinclair 2068.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<style>
+#slot { height: min(78vh, 64vw * 0.75 + 20px); min-height: 300px; display: flex; align-items: center; justify-content: center; background: #000; border-radius: 12px; border: 1px solid var(--line); }
+#slot:fullscreen { height: 100vh; border: 0; border-radius: 0; }
+#screen { background: #000; outline: none; }
+#slot:focus-within { box-shadow: 0 0 0 2px var(--accent); }
+.ctl { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 14px 0; }
+.ctl .sep { color: var(--muted); }
+#status { color: var(--muted); font-size: 14px; min-height: 1.4em; }
+.player { padding: 20px 0 8px; }
+</style>
+<script>try { var t = localStorage.getItem('imp-doom-site.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="stripe"><i></i><i></i><i></i></span> Imp Doom</a>
+    <nav>
+      <a href="imp-doom-1.html">Imp Doom</a>
+      <a href="imp-doom-2.html">Imp Doom II</a>
+      <a href="imp-doom-3.html">Imp Doom III</a>
+      <a href="index.html#how">How to play</a>
+      <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">Credits</a>
+      <a href="https://github.com/nchiker/Imp-Doom">GitHub</a>
+      <button class="theme" id="theme" title="Switch between light and dark">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<main class="player">
+  <div class="wrap">
+    <div class="ctl">
+      <b id="gname">Imp Doom III</b>
+      <button class="btn sm" id="reset" type="button">Reset</button>
+      <button class="btn sm alt" id="pause" type="button">Pause</button>
+      <button class="btn sm alt" id="full" type="button">Fullscreen</button>
+      <span class="sep">|</span>
+      <a data-game="1" href="play.html?game=1">I</a> <a data-game="2" href="play.html?game=2">II</a> <a data-game="3" href="play.html?game=3">III</a>
+      <a id="about" href="imp-doom-3.html">About this game</a>
+    </div>
+    <div id="slot"><canvas id="screen" width="640" height="240" tabindex="0" aria-label="The Imp Doom screen. Click it to give it the keyboard."></canvas></div>
+    <div class="ctl">
+      <span id="saveline">Saved game: no</span>
+      <button class="btn sm alt" id="delsave" type="button" hidden>Delete save</button>
+      <span class="sep">|</span>
+      <span id="joy">joystick: no gamepad</span>
+    </div>
+    <div id="status" role="status">starting</div>
+    <details open>
+      <summary><b>Keys</b></summary>
+      <p><kbd>Q</kbd> / <kbd>A</kbd> forward / back (or cursor up / down), <kbd>O</kbd> / <kbd>P</kbd> turn (or cursor left / right), <kbd>Z</kbd> / <kbd>X</kbd> strafe, <kbd>SPACE</kbd> fire, <kbd>E</kbd> or <kbd>ENTER</kbd> use. <kbd>SPACE</kbd> or <kbd>ENTER</kbd> starts on the title screen. A gamepad works as joystick 1.</p>
+      <p id="keys3" hidden><kbd>K</kbd> saves the game, <kbd>L</kbd> loads it (also on the title and the banners). Border: white = saved, yellow = loaded, magenta = failed. The save stays in this browser.</p>
+      <p class="fine">Needs a keyboard (there are no touch controls). Click the picture first. If the page shows an error about WebGL, your browser or its graphics settings do not provide WebGL 2, which the emulator needs.</p>
+    </details>
+  </div>
+</main>
+<script type="module" src="js/play.js"></script>
+<footer>
+  <div class="wrap">
+    <p><b>Imp Doom</b> is an independent fan project. It is not affiliated with, endorsed by or sponsored by id Software or Bethesda. All art, code, levels and music are original.</p>
+    <p>Not affiliated with Timex, Sinclair, Amstrad, Apple, Fuse or ZEsarUX. Timex, Sinclair and ZX Spectrum are trademarks of their owners. The page runs on <a href="https://github.com/josef-jelinek/TSRun">TSRun</a> by Josef Jel&iacute;nek (via the <a href="https://github.com/nchiker/TSRun">nchiker fork</a>) with the stock TS2068 ROMs; see <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+    <p>Code and documents are under the <a href="LICENSE">MIT License</a>, copyright (c) 2026 Charlie Day. Tested on an emulator (TSRun); not tried on a real TS2068.</p>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>

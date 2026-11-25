@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imp Doom III</title>
+<meta name="description" content="Imp Doom III: generated levels up to level 99, green imps, a dark tune, and save and load on K and L.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<script>try { var t = localStorage.getItem('imp-doom-site.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="stripe"><i></i><i></i><i></i></span> Imp Doom</a>
+    <nav>
+      <a href="imp-doom-1.html">Imp Doom</a>
+      <a href="imp-doom-2.html">Imp Doom II</a>
+      <a href="imp-doom-3.html">Imp Doom III</a>
+      <a href="index.html#how">How to play</a>
+      <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">Credits</a>
+      <a href="https://github.com/nchiker/Imp-Doom">GitHub</a>
+      <button class="theme" id="theme" title="Switch between light and dark">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Imp Doom III</h1>
+      <p class="lead">The newest game: every level is generated, the imps are green, and you can save and come back.</p>
+      <div class="cta"><a class="btn" href="play.html?game=3">Play Imp Doom III</a><a class="btn alt" href="index.html#how">How to play</a></div>
+      <p class="fine">Runs in your browser on an emulated Timex Sinclair 2068. Not affiliated with id Software or Bethesda.</p>
+    </div>
+    <div class="screen"><img class="px" src="img/imp3_title.png" alt="Imp Doom III title screen" width="576" height="448"></div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>What is different</h2>
+    <p class="sub">Compared with the other two games:</p>
+    <ul>
+      <li><b>Generated levels.</b> Each level is built by a generator from a seed, so the layouts keep coming, up to level 99. The label names the area (CRYPT, VAULT, CELLS, DEEP, SHAFT, GATE, NEST, ABYSS) with the level number.</li>
+      <li><b>Green imps</b>, and magenta ammo boxes so they stand out against the green. The title reads IMP DOOM III on its own <b>green border</b>.</li>
+      <li><b>100% health at the start</b> of a new game. On later levels you start with what you carried over or half health, whichever is more.</li>
+      <li><b>A dark tune</b> in C phrygian.</li>
+      <li><b>AREA CLEAR</b> is the banner when a level is cleared; fire goes on to the next generated level.</li>
+      <li><b>Save and load.</b> <kbd>K</kbd> saves the game you are in, <kbd>L</kbd> loads it (also from the title and the banners, even after a reload). The border flashes white when saved, yellow when loaded and magenta when it failed (for example, no saved game). A dead game cannot be saved. On this site the save is kept in your browser&rsquo;s local storage.</li>
+    </ul>
+    <p class="note"><b>Final.</b> Imp Doom III is the finished build of the series.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>Screenshots</h2>
+    <div class="trio">
+<figure><img class="px" src="img/imp3_title.png" alt="Imp Doom III title screen" width="576" height="448"><figcaption>The title screen with the green border.</figcaption></figure>
+<figure><img class="px" src="img/imp3_level1.png" alt="Imp Doom III level 1" width="576" height="448"><figcaption>Level 1, CRYPT 1: a generated level, 100% health, 30 bullets.</figcaption></figure>
+<figure><img class="px" src="img/imp3_imps.png" alt="Imp Doom III: two green imps" width="576" height="448"><figcaption>Two green imps close in.</figcaption></figure>
+<figure><img class="px" src="img/imp3_clear.png" alt="Imp Doom III: AREA CLEAR banner" width="576" height="448"><figcaption>The AREA CLEAR banner.</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>The tune</h2>
+    <p class="sub">The tune of Imp Doom III (C phrygian: one 51 second pass and the start of the repeat), exported from the project&rsquo;s model of the TS2068 sound chip.</p>
+    <audio controls preload="none" src="audio/imp_doom_3_tune.mp3">Your browser does not play audio elements; the file is <a href="audio/imp_doom_3_tune.mp3">audio/imp_doom_3_tune.mp3</a>.</audio>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>Controls</h2>
+<table>
+  <tr><th>Action</th><th>Keys</th><th>Gamepad</th></tr>
+  <tr><td>Forward / back</td><td><kbd>Q</kbd> / <kbd>A</kbd>, or cursor up / down</td><td>up / down</td></tr>
+  <tr><td>Turn left / right</td><td><kbd>O</kbd> / <kbd>P</kbd>, or cursor left / right</td><td>left / right</td></tr>
+  <tr><td>Strafe left / right</td><td><kbd>Z</kbd> / <kbd>X</kbd></td><td>-</td></tr>
+  <tr><td>Fire</td><td><kbd>SPACE</kbd></td><td>fire button</td></tr>
+  <tr><td>Use (open the locked door, once you have the key)</td><td><kbd>E</kbd> or <kbd>ENTER</kbd></td><td>-</td></tr>
+  <tr><td>Start, restart, continue (title, death and win screens)</td><td><kbd>SPACE</kbd> or <kbd>ENTER</kbd></td><td>fire button</td></tr>
+  <tr><td>Save the game</td><td><kbd>K</kbd> (while playing)</td><td>-</td></tr>
+  <tr><td>Load the saved game</td><td><kbd>L</kbd> (while playing, and also on the title and the death and win screens)</td><td>-</td></tr>
+</table>
+<p class="fine">Keys can be combined (walk and turn, strafe and fire). Click the picture first so it gets the keyboard; the sound starts on the first click or key. A connected gamepad is read as joystick 1.</p>
+    <p style="margin-top:22px"><a class="btn" href="play.html?game=3">Play Imp Doom III</a> <a class="btn alt" href="cart/imp_doom_3.dck" download>Download the cartridge (.dck)</a></p>
+    <p class="fine">The .dck file is a DOCK cartridge image for the TS2068; emulators that take dock cartridges can load it.</p>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <p><b>Imp Doom</b> is an independent fan project. It is not affiliated with, endorsed by or sponsored by id Software or Bethesda. All art, code, levels and music are original.</p>
+    <p>Not affiliated with Timex, Sinclair, Amstrad, Apple, Fuse or ZEsarUX. Timex, Sinclair and ZX Spectrum are trademarks of their owners. The page runs on <a href="https://github.com/josef-jelinek/TSRun">TSRun</a> by Josef Jel&iacute;nek (via the <a href="https://github.com/nchiker/TSRun">nchiker fork</a>) with the stock TS2068 ROMs; see <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+    <p>Code and documents are under the <a href="LICENSE">MIT License</a>, copyright (c) 2026 Charlie Day. Tested on an emulator (TSRun); not tried on a real TS2068.</p>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>

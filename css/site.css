@@ -1,0 +1,91 @@
+/* Imp Doom site styles. Variables and layout follow the Leap IDE / Leap Arcade pages (same author). */
+:root {
+  --bg: #fbfaf6; --panel: #ffffff; --ink: #1c1d22; --muted: #5c6070; --line: #e1ded3;
+  --accent: #b3261e; --accent-ink: #ffffff; --code-bg: #f1efe7; --shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08);
+  --y: #f3c200; --b: #1f4fd8; --g: #1da34a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101116; --panel: #181a21; --ink: #ecebe6; --muted: #9a9eae; --line: #2a2d38;
+    --accent: #ff6a5e; --accent-ink: #1a0604; --code-bg: #1f222b; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101116; --panel: #181a21; --ink: #ecebe6; --muted: #9a9eae; --line: #2a2d38;
+  --accent: #ff6a5e; --accent-ink: #1a0604; --code-bg: #1f222b; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; display: block; }
+.px { image-rendering: pixelated; image-rendering: crisp-edges; }
+code, pre, kbd { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .88em; }
+code { background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
+kbd { background: var(--panel); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: .05em .4em; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+/* top bar */
+.bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; gap: 18px; min-height: 56px; flex-wrap: wrap; }
+.brand { font-weight: 800; letter-spacing: .02em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.stripe { display: inline-flex; transform: skewX(-20deg); }
+.stripe i { display: block; width: 7px; height: 16px; }
+.stripe i:nth-child(1) { background: var(--y); } .stripe i:nth-child(2) { background: var(--b); } .stripe i:nth-child(3) { background: var(--g); }
+.bar nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; align-items: center; }
+.bar nav a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: 15px; }
+.bar nav a:hover, .bar nav a.current { color: var(--ink); background: var(--code-bg); }
+.theme { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 15px; }
+.btn { display: inline-block; background: var(--accent); color: var(--accent-ink); padding: 12px 22px; border-radius: 12px; font-weight: 700; text-decoration: none; box-shadow: var(--shadow); border: 0; cursor: pointer; font-size: 17px; }
+.btn:hover { filter: brightness(1.08); }
+.btn.alt { background: var(--panel); color: var(--ink); border: 1px solid var(--line); }
+.btn.sm { padding: 6px 14px; font-size: 14px; border-radius: 9px; box-shadow: none; }
+
+/* hero */
+.hero { padding: 56px 0 40px; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.hero h1 { font-size: clamp(38px, 6vw, 62px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -.02em; }
+.hero p.lead { font-size: 20px; color: var(--muted); margin: 0 0 26px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.screen { display: block; background: #000; border-radius: 14px; padding: 14px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.screen img { width: 100%; border-radius: 4px; }
+.fine { font-size: 14px; color: var(--muted); margin-top: 16px; }
+
+/* sections */
+section { padding: 44px 0; }
+section + section { border-top: 1px solid var(--line); }
+h2 { font-size: 32px; letter-spacing: -.01em; margin: 0 0 8px; line-height: 1.2; }
+h3 { font-size: 21px; margin: 28px 0 6px; }
+.sub { color: var(--muted); margin: 0 0 22px; font-size: 18px; }
+figure { margin: 18px 0 26px; }
+figure img { border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); width: 100%; background: #000; }
+figcaption { color: var(--muted); font-size: 15px; margin-top: 8px; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pair figure, .trio figure { margin: 10px 0 18px; }
+
+/* cards */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.card h3 { margin: 12px 0 4px; }
+.card p { margin: 0 0 12px; color: var(--muted); font-size: 16px; }
+.card ul { margin: 0 0 14px; padding-left: 20px; font-size: 16px; }
+.card .cta { margin-top: auto; }
+.card img { border-radius: 8px; background: #000; border: 1px solid var(--line); }
+
+table { border-collapse: collapse; width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 16px; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--code-bg); font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+.note { background: var(--code-bg); border-left: 4px solid var(--accent); padding: 10px 14px; border-radius: 6px; margin: 16px 0; font-size: 16px; }
+audio { width: 100%; max-width: 520px; display: block; margin: 8px 0; }
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+footer p { margin: 0 0 8px; }
+
+@media (max-width: 800px) {
+  .hero .wrap, .pair { grid-template-columns: 1fr; }
+  .cards, .trio { grid-template-columns: 1fr; }
+  .hero { padding: 32px 0 24px; }
+  .bar nav { margin-left: 0; }
+  table { font-size: 15px; }
+}

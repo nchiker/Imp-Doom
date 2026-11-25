@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imp Doom</title>
+<meta name="description" content="Imp Doom, a first-person imp shooter for the Timex Sinclair 2068, in three versions. Play it in your browser.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<script>try { var t = localStorage.getItem('imp-doom-site.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="stripe"><i></i><i></i><i></i></span> Imp Doom</a>
+    <nav>
+      <a href="imp-doom-1.html">Imp Doom</a>
+      <a href="imp-doom-2.html">Imp Doom II</a>
+      <a href="imp-doom-3.html">Imp Doom III</a>
+      <a href="index.html#how">How to play</a>
+      <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">Credits</a>
+      <a href="https://github.com/nchiker/Imp-Doom">GitHub</a>
+      <button class="theme" id="theme" title="Switch between light and dark">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Imp Doom</h1>
+      <p class="lead">A first-person imp shooter for the Timex Sinclair 2068: a ray-casting 3D view, a pistol, six imps, a key and a locked door on every level. Three versions, all playable here in your browser.</p>
+      <div class="cta">
+        <a class="btn" href="play.html?game=3">Play Imp Doom III</a>
+        <a class="btn alt" href="#games">The three games</a>
+        <a class="btn alt" href="#how">How to play</a>
+      </div>
+      <p class="fine">A fan-made game for a 1983 home computer, run in an emulator. Not affiliated with id Software or Bethesda.</p>
+    </div>
+    <div class="screen"><img class="px" src="img/imp3_title.png" alt="The Imp Doom III title screen: a green imp, the words IMP DOOM III and PRESS FIRE, on a green border" width="576" height="448"></div>
+  </div>
+</section>
+
+<section id="games">
+  <div class="wrap">
+    <h2>Three games</h2>
+    <p class="sub">The same engine and the same controls, three different ways to play.</p>
+    <div class="cards">
+      <div class="card">
+        <img class="px" src="img/imp1_title.png" alt="The Imp Doom title screen on a black border" width="576" height="448">
+        <h3>Imp Doom</h3>
+        <p>The first game, kept as it was.</p>
+        <ul><li>four hand-built levels</li><li>yellow imps</li><li>black border</li><li>a D minor tune</li></ul>
+        <div class="cta"><a class="btn sm" href="play.html?game=1">Play</a><a class="btn sm alt" href="imp-doom-1.html">About</a></div>
+      </div>
+      <div class="card">
+        <img class="px" src="img/imp2_title.png" alt="The Imp Doom II title screen on a blue border" width="576" height="448">
+        <h3>Imp Doom II</h3>
+        <p>The same four levels, remixed: each new game places the imps and items differently.</p>
+        <ul><li>seeded remix of the four levels</li><li>blue border, an E phrygian tune</li><li>ammo boxes give 15; level names; IMPS SLAIN banner</li></ul>
+        <div class="cta"><a class="btn sm" href="play.html?game=2">Play</a><a class="btn sm alt" href="imp-doom-2.html">About</a></div>
+      </div>
+      <div class="card">
+        <img class="px" src="img/imp3_title.png" alt="The Imp Doom III title screen on a green border" width="576" height="448">
+        <h3>Imp Doom III</h3>
+        <p>Generated levels, green imps, and a save you can come back to.</p>
+        <ul><li>a new generated layout each level, up to level 99</li><li>green imps; you start at 100% health</li><li>dark C phrygian tune; save with K, load with L</li></ul>
+        <div class="cta"><a class="btn sm" href="play.html?game=3">Play</a><a class="btn sm alt" href="imp-doom-3.html">About</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How to play</h2>
+    <p class="sub">Press Play, click the picture, press SPACE on the title screen.</p>
+    <ol>
+      <li>Each level is a maze. Kill all the imps to clear it. Some imps wait behind a locked door: find the key, then use the door with <kbd>E</kbd> or <kbd>ENTER</kbd>.</li>
+      <li>Pick up health packs, ammo boxes and the key by walking onto them. The shot goes straight ahead: line an imp up with the middle of the picture and fire.</li>
+      <li>The border flashes to tell you things: red when an imp hits you (turn round, it may be behind you), cyan when you take the key, green when the door opens.</li>
+      <li>If you die, fire restarts the level you died in. When all imps are dead the banner says so (LEVEL CLEAR, AREA CLEAR or IMPS SLAIN, depending on the game); fire carries on.</li>
+    </ol>
+    <h3 id="controls">Controls</h3>
+<table>
+  <tr><th>Action</th><th>Keys</th><th>Gamepad</th></tr>
+  <tr><td>Forward / back</td><td><kbd>Q</kbd> / <kbd>A</kbd>, or cursor up / down</td><td>up / down</td></tr>
+  <tr><td>Turn left / right</td><td><kbd>O</kbd> / <kbd>P</kbd>, or cursor left / right</td><td>left / right</td></tr>
+  <tr><td>Strafe left / right</td><td><kbd>Z</kbd> / <kbd>X</kbd></td><td>-</td></tr>
+  <tr><td>Fire</td><td><kbd>SPACE</kbd></td><td>fire button</td></tr>
+  <tr><td>Use (open the locked door, once you have the key)</td><td><kbd>E</kbd> or <kbd>ENTER</kbd></td><td>-</td></tr>
+  <tr><td>Start, restart, continue (title, death and win screens)</td><td><kbd>SPACE</kbd> or <kbd>ENTER</kbd></td><td>fire button</td></tr>
+  <tr><td>Save the game</td><td><kbd>K</kbd> (while playing)</td><td>-</td></tr>
+  <tr><td>Load the saved game</td><td><kbd>L</kbd> (while playing, and also on the title and the death and win screens)</td><td>-</td></tr>
+</table>
+<p class="fine">Keys can be combined (walk and turn, strafe and fire). Click the picture first so it gets the keyboard; the sound starts on the first click or key. A connected gamepad is read as joystick 1.</p>
+    <p class="fine">Save and load (<kbd>K</kbd> / <kbd>L</kbd>) work in Imp Doom III only. Your saved game is kept in this browser (local storage); clearing the site's data deletes it.</p>
+    <h3 id="scld">What is a TS2068 and its fine colour mode?</h3>
+    <p>The Timex Sinclair 2068 is an 8-bit home computer from 1983 with a Z80 processor running at about 3.5 MHz, close kin to the Sinclair ZX Spectrum. Its video chip, the SCLD, adds screen modes the Spectrum does not have. In the usual Spectrum mode one colour pair covers a whole 8 by 8 pixel block, so colours clash; in the SCLD&rsquo;s fine colour mode every 8 by 1 pixel strip gets its own pair, which lets a 3D view show walls, floor and imps in clearly different colours.</p>
+    <p>Imp Doom runs on the stock TS2068 and uses that mode; the browser page below the Play button emulates the machine with <a href="https://github.com/nchiker/TSRun">TSRun</a>, so it runs at the machine&rsquo;s own speed (15 game frames a second).</p>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <p><b>Imp Doom</b> is an independent fan project. It is not affiliated with, endorsed by or sponsored by id Software or Bethesda. All art, code, levels and music are original.</p>
+    <p>Not affiliated with Timex, Sinclair, Amstrad, Apple, Fuse or ZEsarUX. Timex, Sinclair and ZX Spectrum are trademarks of their owners. The page runs on <a href="https://github.com/josef-jelinek/TSRun">TSRun</a> by Josef Jel&iacute;nek (via the <a href="https://github.com/nchiker/TSRun">nchiker fork</a>) with the stock TS2068 ROMs; see <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+    <p>Code and documents are under the <a href="LICENSE">MIT License</a>, copyright (c) 2026 Charlie Day. Tested on an emulator (TSRun); not tried on a real TS2068.</p>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>

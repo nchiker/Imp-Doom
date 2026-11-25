@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imp Doom II</title>
+<meta name="description" content="Imp Doom II: the four levels remixed with seeded imp and item placement, blue border, a new tune.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<script>try { var t = localStorage.getItem('imp-doom-site.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="stripe"><i></i><i></i><i></i></span> Imp Doom</a>
+    <nav>
+      <a href="imp-doom-1.html">Imp Doom</a>
+      <a href="imp-doom-2.html">Imp Doom II</a>
+      <a href="imp-doom-3.html">Imp Doom III</a>
+      <a href="index.html#how">How to play</a>
+      <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">Credits</a>
+      <a href="https://github.com/nchiker/Imp-Doom">GitHub</a>
+      <button class="theme" id="theme" title="Switch between light and dark">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Imp Doom II</h1>
+      <p class="lead">The same four levels with the imps and items moved around: every new game is a little different.</p>
+      <div class="cta"><a class="btn" href="play.html?game=2">Play Imp Doom II</a><a class="btn alt" href="index.html#how">How to play</a></div>
+      <p class="fine">Runs in your browser on an emulated Timex Sinclair 2068. Not affiliated with id Software or Bethesda.</p>
+    </div>
+    <div class="screen"><img class="px" src="img/imp2_title.png" alt="Imp Doom II title screen" width="576" height="448"></div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>What is different</h2>
+    <p class="sub">Compared with the first game:</p>
+    <ul>
+      <li><b>A seeded remix.</b> The walls, the door and the order of the levels never change, but where the six imps stand and where the key, health pack and ammo boxes lie is picked from stored alternatives by a seed taken when you press fire on the title. Dying restarts the level with the same layout (a fair retry); a new game draws a new seed. Level 1 varies the most.</li>
+      <li><b>A blue border</b> on the title, the title reads IMP DOOM II, and the imps are still yellow.</li>
+      <li><b>A new tune</b>: E phrygian, 112 beats per minute, a driving lead over a galloping bass (a 17 second loop).</li>
+      <li><b>Ammo boxes give 15</b> bullets (10 in the first game).</li>
+      <li><b>Level names</b> on the status bar: 1 HALL, 2 KEEP, 3 FORGE, 4 LAIR. After level 4 the banner reads <b>IMPS SLAIN</b>.</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>Screenshots</h2>
+    <div class="trio">
+<figure><img class="px" src="img/imp2_title.png" alt="Imp Doom II title screen" width="576" height="448"><figcaption>The title screen with the blue border.</figcaption></figure>
+<figure><img class="px" src="img/imp2_level1.png" alt="Imp Doom II level 1" width="576" height="448"><figcaption>Level 1, HALL: the start of a game.</figcaption></figure>
+<figure><img class="px" src="img/imp2_win.png" alt="Imp Doom II: IMPS SLAIN banner" width="576" height="448"><figcaption>The IMPS SLAIN banner after level 4.</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>The tune</h2>
+    <p class="sub">The tune of Imp Doom II (E phrygian: two passes of a 17 second loop), exported from the project&rsquo;s model of the TS2068 sound chip. In the game it plays at a fixed, quiet volume under the effects.</p>
+    <audio controls preload="none" src="audio/imp_doom_2_tune.mp3">Your browser does not play audio elements; the file is <a href="audio/imp_doom_2_tune.mp3">audio/imp_doom_2_tune.mp3</a>.</audio>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <h2>Controls</h2>
+<table>
+  <tr><th>Action</th><th>Keys</th><th>Gamepad</th></tr>
+  <tr><td>Forward / back</td><td><kbd>Q</kbd> / <kbd>A</kbd>, or cursor up / down</td><td>up / down</td></tr>
+  <tr><td>Turn left / right</td><td><kbd>O</kbd> / <kbd>P</kbd>, or cursor left / right</td><td>left / right</td></tr>
+  <tr><td>Strafe left / right</td><td><kbd>Z</kbd> / <kbd>X</kbd></td><td>-</td></tr>
+  <tr><td>Fire</td><td><kbd>SPACE</kbd></td><td>fire button</td></tr>
+  <tr><td>Use (open the locked door, once you have the key)</td><td><kbd>E</kbd> or <kbd>ENTER</kbd></td><td>-</td></tr>
+  <tr><td>Start, restart, continue (title, death and win screens)</td><td><kbd>SPACE</kbd> or <kbd>ENTER</kbd></td><td>fire button</td></tr>
+</table>
+<p class="fine">Keys can be combined (walk and turn, strafe and fire). Click the picture first so it gets the keyboard; the sound starts on the first click or key. A connected gamepad is read as joystick 1.</p>
+    <p style="margin-top:22px"><a class="btn" href="play.html?game=2">Play Imp Doom II</a> <a class="btn alt" href="cart/imp_doom_2.dck" download>Download the cartridge (.dck)</a></p>
+    <p class="fine">The .dck file is a DOCK cartridge image for the TS2068; emulators that take dock cartridges can load it.</p>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <p><b>Imp Doom</b> is an independent fan project. It is not affiliated with, endorsed by or sponsored by id Software or Bethesda. All art, code, levels and music are original.</p>
+    <p>Not affiliated with Timex, Sinclair, Amstrad, Apple, Fuse or ZEsarUX. Timex, Sinclair and ZX Spectrum are trademarks of their owners. The page runs on <a href="https://github.com/josef-jelinek/TSRun">TSRun</a> by Josef Jel&iacute;nek (via the <a href="https://github.com/nchiker/TSRun">nchiker fork</a>) with the stock TS2068 ROMs; see <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+    <p>Code and documents are under the <a href="LICENSE">MIT License</a>, copyright (c) 2026 Charlie Day. Tested on an emulator (TSRun); not tried on a real TS2068.</p>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>
