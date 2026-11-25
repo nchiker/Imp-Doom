@@ -30,6 +30,11 @@ else
   pic imp2_level1.png img27/ab2_level1_start.png
 fi
 pic imp1_win.png img25/aa_you_win.png
+# level-4 start (the same level in I and II: only the label differs), key and door cues (I)
+pic imp1_level4.png img25/aa_level4_start.png
+pic imp2_level4.png img27/ab2_level4_start.png
+pic imp1_key.png img25/aa_key_cue_level2.png
+pic imp1_door.png img25/aa_door_cue_level2.png
 pic imp2_win.png img27/ab2_win.png
 # Imp Doom III: docs/img32 (curated, final build) when its README.txt exists, else the older img31 set (PLACEHOLDER, said loudly).
 if [ -f "$SRC/docs/img32/README.txt" ]; then
@@ -45,6 +50,10 @@ else
   pic imp3_clear.png img31/ac4_level_clear.png
   pic imp3_imps.png img31/ac4_imps_level1.png
 fi
+
+# Imp Doom III extras: a generated level 4 (cyan metal walls, mid-level) and the level-name sheet
+pic imp3_level4.png img32/ac5_wall_cyan.png
+pic imp3_labels.png img31/ac4_labels.png
 
 # tunes: WAV -> MP3 (VBR quality 4, mono as the machine is)
 for n in 2 3; do

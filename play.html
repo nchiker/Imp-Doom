@@ -24,11 +24,13 @@
   <div class="wrap">
     <a class="brand" href="index.html"><span class="stripe"><i></i><i></i><i></i></span> Imp Doom</a>
     <nav>
+      <a href="index.html#play">Play</a>
+      <a href="index.html#different">What is different</a>
       <a href="imp-doom-1.html">Imp Doom</a>
-      <a href="imp-doom-2.html">Imp Doom II</a>
-      <a href="imp-doom-3.html">Imp Doom III</a>
-      <a href="index.html#how">How to play</a>
-      <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">Credits</a>
+      <a href="imp-doom-2.html">II</a>
+      <a href="imp-doom-3.html">III</a>
+      <a href="tech.html">How it works</a>
+      <a href="index.html#credits">Credits</a>
       <a href="https://github.com/nchiker/Imp-Doom">GitHub</a>
       <button class="theme" id="theme" title="Switch between light and dark">&#9790;</button>
     </nav>
@@ -38,31 +40,34 @@
 <main class="player">
   <div class="wrap">
     <div class="ctl">
-      <b id="gname">Imp Doom III</b>
-      <button class="btn sm" id="reset" type="button">Reset</button>
-      <button class="btn sm alt" id="pause" type="button">Pause</button>
-      <button class="btn sm alt" id="full" type="button">Fullscreen</button>
+      <b id="gname" data-role="gname">Imp Doom III</b>
+      <button class="btn sm" id="reset" data-role="reset" type="button">Reset</button>
+      <button class="btn sm alt" id="pause" data-role="pause" type="button">Pause</button>
+      <button class="btn sm alt" id="full" data-role="full" type="button">Fullscreen</button>
       <span class="sep">|</span>
       <a data-game="1" href="play.html?game=1">I</a> <a data-game="2" href="play.html?game=2">II</a> <a data-game="3" href="play.html?game=3">III</a>
-      <a id="about" href="imp-doom-3.html">About this game</a>
+      <a id="about" data-role="about" href="imp-doom-3.html">About this game</a>
     </div>
-    <div id="slot"><canvas id="screen" width="640" height="240" tabindex="0" aria-label="The Imp Doom screen. Click it to give it the keyboard."></canvas></div>
+    <div id="slot" data-role="slot"><canvas id="screen" data-role="screen" width="640" height="240" tabindex="0" aria-label="The Imp Doom screen. Click it to give it the keyboard."></canvas></div>
     <div class="ctl">
-      <span id="saveline">Saved game: no</span>
-      <button class="btn sm alt" id="delsave" type="button" hidden>Delete save</button>
+      <span id="saveline" data-role="saveline">Saved game: no</span>
+      <button class="btn sm alt" id="delsave" data-role="delsave" type="button" hidden>Delete save</button>
       <span class="sep">|</span>
-      <span id="joy">joystick: no gamepad</span>
+      <span id="joy" data-role="joy">joystick: no gamepad</span>
     </div>
-    <div id="status" role="status">starting</div>
+    <div id="status" data-role="status" role="status">starting</div>
     <details open>
       <summary><b>Keys</b></summary>
       <p><kbd>Q</kbd> / <kbd>A</kbd> forward / back (or cursor up / down), <kbd>O</kbd> / <kbd>P</kbd> turn (or cursor left / right), <kbd>Z</kbd> / <kbd>X</kbd> strafe, <kbd>SPACE</kbd> fire, <kbd>E</kbd> or <kbd>ENTER</kbd> use. <kbd>SPACE</kbd> or <kbd>ENTER</kbd> starts on the title screen. A gamepad works as joystick 1.</p>
-      <p id="keys3" hidden><kbd>K</kbd> saves the game, <kbd>L</kbd> loads it (also on the title and the banners). Border: white = saved, yellow = loaded, magenta = failed. The save stays in this browser.</p>
+      <p id="keys3" data-role="keys3" hidden><kbd>K</kbd> saves the game, <kbd>L</kbd> loads it (also on the title and the banners). Border: white = saved, yellow = loaded, magenta = failed. The save stays in this browser.</p>
       <p class="fine">Needs a keyboard (there are no touch controls). Click the picture first. If the page shows an error about WebGL, your browser or its graphics settings do not provide WebGL 2, which the emulator needs.</p>
     </details>
   </div>
 </main>
-<script type="module" src="js/play.js"></script>
+<script type="module">
+import { mountPlayer } from './js/play.js';
+mountPlayer(document.querySelector('main.player'), { start: 'now', title: true, url: (n) => `play.html?game=${n}` });
+</script>
 <footer>
   <div class="wrap">
     <p><b>Imp Doom</b> is an independent fan project. It is not affiliated with, endorsed by or sponsored by id Software or Bethesda. All art, code, levels and music are original.</p>

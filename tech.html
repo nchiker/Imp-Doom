@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imp Doom: how it works</title>
+<meta name="description" content="How Imp Doom works: the ray-casting 3D view, the 8 by 1 fine colour mode, the level generator of Imp Doom III, the sound chip and how it was checked.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/site.css">
+<script>try { var t = localStorage.getItem('imp-doom-site.theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="stripe"><i></i><i></i><i></i></span> Imp Doom</a>
+    <nav>
+      <a href="index.html#play">Play</a>
+      <a href="index.html#different">What is different</a>
+      <a href="imp-doom-1.html">Imp Doom</a>
+      <a href="imp-doom-2.html">II</a>
+      <a href="imp-doom-3.html">III</a>
+      <a href="tech.html">How it works</a>
+      <a href="index.html#credits">Credits</a>
+      <a href="https://github.com/nchiker/Imp-Doom">GitHub</a>
+      <button class="theme" id="theme" title="Switch between light and dark">&#9790;</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>How it works</h1>
+      <p class="lead">What is inside the three Imp Doom cartridges: the 3D view, the colour mode, the generator of Imp Doom III, the sound chip, the save, and how all of it was checked.</p>
+      <div class="cta"><a class="btn" href="index.html#play">Play it</a><a class="btn alt" href="index.html#different">What is different</a></div>
+      <p class="fine">Everything here is a summary of the project&rsquo;s own result notes (spikes F to AC-5); numbers are measured on the TSRun emulator. Not tried on a real TS2068.</p>
+    </div>
+    <div class="screen"><img class="px" src="img/imp3_imps.png" alt="Imp Doom III: two green imps in a corridor" width="576" height="448"></div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <ul class="toc"><li><a href="#machine">The machine</a></li><li><a href="#view">The 3D view</a></li><li><a href="#colour">The 8 by 1 colour mode</a></li><li><a href="#logic">The game</a></li><li><a href="#generator">Imp Doom III&rsquo;s generator</a></li><li><a href="#sound">The sound chip</a></li><li><a href="#save">The save</a></li><li><a href="#checks">How it was checked</a></li><li><a href="#limits">Limits and misses</a></li></ul>
+
+    <h2 id="machine">The machine</h2>
+    <p>The Timex Sinclair 2068 is an 8-bit home computer from 1983: a Z80 processor at about 3.5 MHz (3,528,000 cycles a second in the emulator), close kin to the Sinclair ZX Spectrum, with an extra video chip (the SCLD) and an AY sound chip. Each game is a 64 KB <b>DOCK cartridge image</b> (65,545 bytes). The game runs at <b>15 frames a second</b>: one game frame is four screen refreshes of 58,688 cycles, so the whole frame &mdash; drawing, game logic and sound &mdash; has 234,752 cycles. The project&rsquo;s own budget limit for the drawing was 226,000 cycles.</p>
+
+    <h2 id="view">The 3D view: ray-casting</h2>
+    <p>The view is a <b>ray-caster</b>, the technique of early first-person games. The level is a 32 by 32 grid of cells (walls of brick, stone, metal, and the yellow door). For each screen column the program sends a ray out from the player, finds the first wall it hits, and draws a wall strip whose height depends on the distance. The 3D window is <b>128 by 96 pixels</b>, cast with <b>32 rays</b>, so each ray drives a column 4 pixels wide. The ray test is an exact grid walk (about 1,436 cycles a ray), not a fixed-step march: a faster fixed-step version was tried and rejected because 5 to 7% of its rays missed corners.</p>
+    <p>Walls are textured by the cell they are in: brick and stone as dithered patterns with mortar lines that converge toward the horizon, panel seams on metal, and the ink gets darker in four steps with distance. Behind the walls the backdrop is a black ceiling and a blue floor with a brighter strip near the player. The <b>imps are sprites</b> pre-scaled into 18 size classes (6 to 64 pixels) so that scaling costs almost nothing while playing; each is clipped against the walls by its column&rsquo;s distance, with an exact outline where it stands against a solid wall. The picture is drawn into a back buffer and copied to the screen, so you never see a half-drawn frame. Worst-case measured frame cost on generated levels is 216,806 cycles (219,016 with the muzzle flash and growl forced on every frame), under the 226,000 limit.</p>
+
+    <h2 id="colour">The 8 by 1 fine colour mode</h2>
+    <p>On the ordinary Spectrum screen one pair of colours (ink and paper) covers a whole 8 by 8 pixel block, so colours clash. The SCLD&rsquo;s fine colour mode gives <b>every 8 by 1 pixel strip its own colour pair</b>. That is what lets one 3D view hold a red brick wall, a blue floor, a yellow or green imp and a white gun without every block turning into a compromise. The price is memory and time: two bytes per 8 pixels, so the picture and its colours are written in tandem, and the drawing code is built around writing one byte of pattern and one byte of colour together. The status bar and frame are set once and cost nothing per frame.</p>
+    <p>Imp Doom III&rsquo;s green imps are a colour change only (colour attribute bytes; the sprite bitmaps are unchanged), and its gun drawing was fixed so that a strip that is part gun and part solid wall keeps the wall&rsquo;s colour instead of turning black.</p>
+
+    <h2 id="logic">The game</h2>
+    <p>The game logic runs in step with the drawing: player movement and collision, doors and keys, pick-ups, six imps (each a small state machine: asleep, awake and walking toward you, attacking, hurt, dead), the pistol (a hit test straight ahead; an imp takes three hits), and a random-number generator. An imp wakes when you come within about six cells. The game logic has a budget of about 16,500 cycles a frame.</p>
+    <p>What each version adds on top is in <a href="index.html#compare">the comparison</a>: Imp Doom II&rsquo;s remix picks imp and item positions from stored alternatives with an 8-bit seed; Imp Doom III replaces the stored levels with a generator.</p>
+
+    <h2 id="generator">Imp Doom III&rsquo;s generator</h2>
+    <p>Imp Doom III keeps no level maps at all. Each level is described by a 14-bit number <b>W</b>: a 12-bit seed and a 2-bit difficulty step (the step is the level number up to 4), which gives <b>16,384 possible levels</b>. A generator written in Z80 assembly (about 4.4 KB of code and about 1.4 KB of tables, running straight from the cartridge) assembles a 32 by 32 map from tiles and room templates, puts the door room and the vault in the top right corner (those positions are fixed in the engine), places the six imps in clumps on marked spots, and drops the key, ammo and health packs. A level start takes at most about 710,000 cycles, roughly a fifth of a second. The next level&rsquo;s seed is (5 &times; seed + 17) mod 4096, which visits all 4,096 seeds before repeating, and a short table (a &ldquo;skip list&rdquo;, 1,343 bytes) steps over seeds whose levels a test bot could not win from the lowest start (50% health).</p>
+    <p>Each difficulty step sets the least ammo a level may start with (30, 24, 18, 14 bullets), how many ammo boxes lie outside the vault and how many imps wait behind the door. In the project&rsquo;s bot tests the effect was gentle: the average damage taken by the test bot on levels it could win was about 5.1, 8.3, 8.7 and 9.6 (out of 100) for steps 1 to 4, short of the harder bands that had been planned; the steps rise, but not by much.</p>
+    <p>Every generated level was checked against rules: a worst-case view bound on the drawing cost, the key reachable with the door shut, every ammo box reachable with the door open, enough ammo for every imp, no imp awake at the start. The Z80 generator was compared with its JavaScript model on <b>all 16,384 inputs, byte for byte</b> (a 1,301-byte level block, with the scratch memory pre-filled with garbage so a missing write shows).</p>
+
+    <h2 id="sound">The sound chip</h2>
+    <p>Sound is made by the AY-3-8912 chip (three square-wave voices with noise and an envelope; not the beeper). The tune plays on two of them (lead on channel A, bass on channel B). Sound effects &mdash; the shot, an imp being hurt or dying, the door opening or closing, a pick-up, the key, the player being hit, and (added later) an imp&rsquo;s growl &mdash; take a free channel, or the one of lowest priority; while an effect owns a channel, that tune voice keeps counting but stays silent and comes back when the effect ends. A sound tick of at most about 2,000 cycles a frame updates the chip, and the tune advances one voice per frame, so each voice every second frame, which keeps the cost low. The three tunes were written for the project: Imp Doom in D minor at 75 beats per minute, Imp Doom II in E phrygian at 112, Imp Doom III in C phrygian at 56, with the bass on the lowest notes the chip has (it cannot go lower). The MP3s on the game pages were exported from the project&rsquo;s model of the chip, and a test checked that every written note appears at its pitch in that audio. The sound on this page is TSRun&rsquo;s own AY model.</p>
+
+    <h2 id="save">The save (Imp Doom III)</h2>
+    <p>The cartridge asks its host for files through a small bridge (the emulator&rsquo;s ports $6F and $6D). On this site the host is <code>js/fshost.js</code> with <code>js/persist.js</code>, which keeps the one file, <code>DOOM1.SAV</code> (277 bytes: the game state, the level and W, with a checksum), in the browser&rsquo;s local storage as base64. Loading a save from a different level or layout regenerates that level first (from the level and W in the file) and then loads; a file with a bad checksum, a damaged door record or a level outside 1 to 99 is refused with the game untouched (magenta border).</p>
+
+    <h2 id="checks">How it was checked</h2>
+    <p>The game runs on the emulator in <b>lockstep with a JavaScript model</b> of itself: after every game frame the Z80&rsquo;s state, both screen planes, the sound registers and the border must equal the model&rsquo;s, and any difference is a failure. Frame cost, logic cost, sound tick, lost interrupts and screen tearing are measured against limits fixed in advance. Then the checks themselves are tested: hundreds of <b>mutants</b> (a copy of the program with one byte or instruction deliberately broken) must each be caught by at least one check. Imp Doom III&rsquo;s final run was 59 jobs, all passing, including 74 of 74 save and load mutants and the generator&rsquo;s lockstep over all 16,384 inputs.</p>
+
+    <h2 id="limits">Limits and misses (plainly)</h2>
+    <ul>
+      <li>Everything was measured on the TSRun emulator only. Real TS2068 hardware has not been tried; a second emulator (ZEsarUX, which models memory contention) was used for Imp Doom and II but its check was waived for Imp Doom III.</li>
+      <li>Imp Doom III has a few known small misses, accepted by its author: one hand-set test scenario with the gun fix costs 226,043 cycles against the 226,000 limit (43 over); an imp&rsquo;s hurt sound can start up to 4 frames late (that is the limit set for it), and the growl can too in forced stress runs, against a target of 3.</li>
+      <li>The tunes were checked by analysis of the chip model, and the author judged them by ear in the emulator; the agent that built them did not listen to them.</li>
+      <li>Imp Doom (the first game) is frozen, and very likely has a rare interrupt-timing glitch that was fixed in Imp Doom II: under extreme interrupt density, one 8-pixel group could be wrong for one frame.</li>
+    </ul>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <p><b>Imp Doom</b> is an independent fan project. It is not affiliated with, endorsed by or sponsored by id Software or Bethesda. All art, code, levels and music are original.</p>
+    <p>Not affiliated with Timex, Sinclair, Amstrad, Apple, Fuse or ZEsarUX. Timex, Sinclair and ZX Spectrum are trademarks of their owners. The page runs on <a href="https://github.com/josef-jelinek/TSRun">TSRun</a> by Josef Jel&iacute;nek (via the <a href="https://github.com/nchiker/TSRun">nchiker fork</a>) with the stock TS2068 ROMs; see <a href="https://github.com/nchiker/Imp-Doom/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+    <p>Code and documents are under the <a href="LICENSE">MIT License</a>, copyright (c) 2026 Charlie Day. Tested on an emulator (TSRun); not tried on a real TS2068.</p>
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</body>
+</html>
